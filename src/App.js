@@ -11,8 +11,9 @@ import {
   Col
 } from "antd";
 import reqwest from "reqwest";
+import locale from 'antd/es/date-picker/locale/th_TH';
 
-const { Header, Footer, Sider, Content } = Layout;
+const { Content } = Layout;
 
 const getRandomuserParams = params => ({
   results: params.pagination.pageSize,
@@ -48,6 +49,8 @@ const columns = [
 const cardStyle = {
   marginBottom: "8px",
 };
+
+const customDateFormat = value => `${value.day()}/${value.month()+1}/${value.year()+543}`;
 
 export default class App extends React.Component {
 
@@ -138,7 +141,11 @@ export default class App extends React.Component {
             <Row>
               <Col span={24}>
                 <Card title="DatePicker Input" style={cardStyle}>
-                  <DatePicker style={{ width: "100%" }} />
+                  <DatePicker 
+                    style={{ width: "100%" }}
+                    format={customDateFormat}
+                    locale={locale}
+                  />
                 </Card>
               </Col>
             </Row>
